@@ -21,7 +21,7 @@ return new class extends Migration
                 ->restrictOnDelete()
                 ->cascadeOnUpdate();
             $table->foreignIdFor(Restaurant::class)->constrained()->restrictOnDelete()->cascadeOnUpdate();
-            $table->enum("status", OrderStatus::cases());
+            $table->enum("status", array_map(fn (OrderStatus $status) => $status->value, OrderStatus::cases()));
             $table->timestamps();
         });
     }

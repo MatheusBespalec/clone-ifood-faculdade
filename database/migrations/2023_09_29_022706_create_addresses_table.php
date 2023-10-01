@@ -16,14 +16,15 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string("name", 100);
+            $table->string("name", 100)->nullable();
+            $table->char("zip_code", 9);
             $table->string("street", 100);
             $table->string("neighborhood", 100);
             $table->string("number", 50);
             $table->string("complement", 50);
             $table->string("reference");
             $table->string("city", 100);
-            $table->enum("state", BrazilStates::cases());
+            $table->enum("state", array_map(fn (BrazilStates $state) => $state->value, BrazilStates::cases()));
             $table->timestamps();
         });
     }

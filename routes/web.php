@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', "/restaurantes")->name("home");
+Route::name("restaurants.")->prefix("restaurantes") ->group(function () {
+    Route::get("/", [RestaurantController::class, "index"])->name("index");
+    Route::get("/{restaurant}", [RestaurantController::class, "show"])
+        ->whereNumber("restaurant")
+        ->name("show");
+});
 Route::get('/restaurantes', [RestaurantController::class, "index"])->name("restaurants");
 
 

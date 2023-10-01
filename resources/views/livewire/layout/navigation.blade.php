@@ -15,7 +15,7 @@ new class extends Component
     }
 }; ?>
 
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="z-50 fixed bg-white border-b border-gray-100 w-full border-b border-gray-300">
     <!-- Primary Navigation Menu -->
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20 items-center">
@@ -23,7 +23,7 @@ new class extends Component
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="/" wire:navigate>
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <x-logo.application class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
 
@@ -38,10 +38,13 @@ new class extends Component
             <!-- Settings Dropdown -->
             @auth()
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <button class="text-red-600 text-xs flex gap-2 items-center">
+                        <span class="font-medium text-gray-600 text-sm">Selecionar Endereço</span> <x-icon.chevron-down/>
+                    </button>
                     <x-dropdown align="right" width="w-80">
                         <x-slot name="trigger">
                             <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                <div class="fill-red-600" x-on:profile-updated.window="name = $event.detail.name"><x-user-icon/></div>
+                                <div class="fill-red-600" x-on:profile-updated.window="name = $event.detail.name"><x-icon.user/></div>
                             </button>
                         </x-slot>
 
@@ -59,11 +62,12 @@ new class extends Component
                             </button>
                         </x-slot>
                     </x-dropdown>
+                    <livewire:cart></livewire:cart>
                 </div>
             @endauth
             @guest()
                 <a class="fill-red-600 text-red-600" href="{{ route("login") }}">
-                    <x-login-icon/>
+                    <x-icon.login/>
                 </a>
             @endguest
 
@@ -104,4 +108,6 @@ new class extends Component
             </div>
         @endauth
     </div>
+
 </nav>
+

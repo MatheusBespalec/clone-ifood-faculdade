@@ -13,10 +13,12 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <div x-data="{cartOpen: false}" class="min-h-screen bg-white">
             <livewire:layout.navigation />
+            <div class="h-12"></div>
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -29,8 +31,13 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                <div class="py-12">
+                    <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
+                        {{ $slot }}
+                    </div>
+                </div>
             </main>
         </div>
+        @livewireScripts
     </body>
 </html>

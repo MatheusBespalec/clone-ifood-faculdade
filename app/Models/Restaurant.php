@@ -14,6 +14,11 @@ class Restaurant extends Model
         "name",
         "thumbnail",
         "description",
+        "street",
+        "neighborhood",
+        "number",
+        "city",
+        "state",
     ];
 
     public function products(): HasMany
