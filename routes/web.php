@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +23,10 @@ Route::name("restaurants.")->prefix("restaurantes") ->group(function () {
         ->whereNumber("restaurant")
         ->name("show");
 });
-Route::get('/restaurantes', [RestaurantController::class, "index"])->name("restaurants");
+
+Route::name("orders.")->prefix("pedido") ->group(function () {
+    Route::get("/finalizar", [OrderController::class, "finish"])->name("finish");
+});
 
 
 Route::view('profile', 'profile')

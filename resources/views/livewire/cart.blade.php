@@ -53,7 +53,7 @@
                 <div>Total</div>
                 <div>R$ {{ number_format($total, 2, ",", ".") }}</div>
             </div>
-            <a href="#finalizar-pedido" class="text-center block py-3 text-white bg-red-600 hover:bg-red-500 rounded font-medium ver">Escolher forma de pagamento</a>
+            <a href="{{ route("orders.finish") }}" class="text-center block py-3 text-white bg-red-600 hover:bg-red-500 rounded font-medium">Escolher forma de pagamento</a>
         </section>
     </div>
 

@@ -29,7 +29,7 @@ new class extends Component
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('restaurants')" :active="request()->routeIs('restaurants')" wire:navigate>
+                    <x-nav-link :href="route('restaurants.index')" :active="request()->routeIs('restaurants')" wire:navigate>
                         Restaurantes
                     </x-nav-link>
                 </div>
