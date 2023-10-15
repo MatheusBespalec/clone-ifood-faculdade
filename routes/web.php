@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ShopController;
@@ -26,6 +27,11 @@ Route::name("restaurants.")->prefix("restaurantes") ->group(function () {
 
 Route::name("orders.")->prefix("pedido") ->group(function () {
     Route::get("/finalizar", [OrderController::class, "finish"])->name("finish");
+});
+
+Route::name("auth.")->group(function () {
+    Route::get("/auth/google", [AuthController::class, "handleGoogleProvider"])->name("google");
+    Route::get("/auth/google-redirect", [AuthController::class, "redirectToGoogleProvider"])->name("google-redirect");
 });
 
 

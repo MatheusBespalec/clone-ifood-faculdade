@@ -1,6 +1,6 @@
 <?php
 
-use App\Enum\OrderStatus;
+use App\Enuns\OrderStatus;
 use App\Models\Restaurant;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -21,7 +21,17 @@ return new class extends Migration
                 ->restrictOnDelete()
                 ->cascadeOnUpdate();
             $table->foreignIdFor(Restaurant::class)->constrained()->restrictOnDelete()->cascadeOnUpdate();
-            $table->enum("status", array_map(fn (OrderStatus $status) => $status->value, OrderStatus::cases()));
+            $table->tinyInteger("status");
+            $table->tinyInteger("delivery_type");
+            $table->tinyInteger("payment_type");
+            $table->tinyInteger("payment_method");
+            $table->string("zip_code")->nullable();
+            $table->string("street")->nullable();
+            $table->string("neighborhood")->nullable();
+            $table->string("number")->nullable();
+            $table->string("complement")->nullable();
+            $table->string("city")->nullable();
+            $table->string("state")->nullable();
             $table->timestamps();
         });
     }

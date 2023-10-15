@@ -8,11 +8,11 @@
                     <li @click="delivery = false" :class="!delivery ? 'box text-red-600 border-red-600' : 'text-gray-300 hover:border-gray-300 border-transparent hover:cursor-pointer'" class="transition py-3 border-b-2">Retirada</li>
                 </ul>
                 <div x-show="delivery">
-                    <p>Rua Teste, 123</p>
-                    <p class="text-gray-400">São Paulo/SP</p>
+                    <p>{{ $deliveryAddress->street }}, {{ $deliveryAddress->number }}</p>
+                    <p class="text-gray-400">{{ $deliveryAddress->state->label() }} / {{ $deliveryAddress->state->value }}</p>
                 </div>
                 <div x-show="!delivery">
-                    <p>Rua Teste Restaurante, 123</p>
+                    <p>{{ $restaurant->street }}, {{ $restaurant->number }}</p>
                 </div>
             </section>
             <section x-data="{ payOnDelivery: false, selected: 0 }" class="border-b pb-14 mb-10">
@@ -42,7 +42,7 @@
             <section class="flex flex-row items-center gap-2" x-data="{ useDocumentInInvoice: true }">
                 <div class="relative">
                     <label  for="document" class="absolute left-3.5 -top-2 px-1 bg-white text-xs text-gray-400">CPF/CNPJ na nota</label>
-                    <input :disabled="useDocumentInInvoice" type="text" id="document" name="document" class="border rounded border-gray-300 focus:border-gray-300 focus:outline-none focus:ring-0">
+                    <input :disabled="useDocumentInInvoice" x-mask="999.999.999-99" type="text" id="document" name="document" class="border rounded border-gray-300 focus:border-gray-300 focus:outline-none focus:ring-0">
                 </div>
                 <div>
                     <label class="relative inline-flex items-center cursor-pointer">

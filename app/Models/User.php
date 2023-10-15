@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Casts\VerificationCodeCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -19,14 +19,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'google_id',
         'name',
         'email',
         "phone",
-        "password",
-        "email_token",
-        "email_token_expiration",
-        "phone_token",
-        "phone_token_expiration",
+        "verification_code",
+        "verification_code_expiration",
     ];
 
     /**
@@ -35,12 +33,17 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_token_expiration' => 'datetime',
-        'phone_token_expiration' => 'datetime',
+        'verification_code' => VerificationCodeCast::class,
+        'verification_code_expiration' => 'datetime:Y-m-d H:i:s',
     ];
 
     public function addresses(): HasMany
     {
         return $this->hasMany(Address::class);
+    }
+
+    public static function findByEmail(string $email): ?User
+    {
+        return User::whereEmail($email)->first();
     }
 }

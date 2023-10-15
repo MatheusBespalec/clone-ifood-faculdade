@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Enum\BrazilStates;
+use App\Enuns\BrazilStates;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

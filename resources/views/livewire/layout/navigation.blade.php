@@ -4,6 +4,8 @@ use Livewire\Volt\Component;
 
 new class extends Component
 {
+    public string $cep;
+
     public function logout(): void
     {
         auth()->guard('web')->logout();
@@ -38,9 +40,12 @@ new class extends Component
             <!-- Settings Dropdown -->
             @auth()
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
-                    <button class="text-red-600 text-xs flex gap-2 items-center">
+                    <button class="text-xs flex gap-2 items-center" x-on:click.prevent="$dispatch('open-modal', 'show-select-address')">
                         <span class="font-medium text-gray-600 text-sm">Selecionar Endereço</span> <x-icon.chevron-down/>
                     </button>
+                    <x-modal name="show-select-address">
+                        <livewire:address-manager></livewire:address-manager>
+                    </x-modal>
                     <x-dropdown align="right" width="w-80">
                         <x-slot name="trigger">
                             <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">

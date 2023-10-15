@@ -23,7 +23,6 @@ class AddressFactory extends Factory
             "neighborhood" => fake()->word(),
             "number" => fake()->numberBetween(1, 500),
             "complement" => "",
-            "reference" => "",
             "city" => fake()->city(),
             "state" => fake()->regionAbbr(),
             "user_id" => User::factory()

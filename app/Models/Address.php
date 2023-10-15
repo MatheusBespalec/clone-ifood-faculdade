@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enum\BrazilStates;
+use App\Enuns\BrazilStates;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,19 +12,21 @@ class Address extends Model
     use HasFactory;
 
     protected $fillable = [
+        "zip_code",
         "name",
         "street",
         "neighborhood",
         "number",
         "complement",
-        "reference",
         "city",
         "state",
+        "active",
         "user_id"
     ];
 
     protected $casts = [
-        "state" => BrazilStates::class
+        "state" => BrazilStates::class,
+        "boolean" => "boolean",
     ];
 
     public function user(): BelongsTo
