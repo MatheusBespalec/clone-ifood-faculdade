@@ -56,8 +56,8 @@ new class extends Component
                         <x-slot name="content" class="text-lg">
                             <h2 class="px-10 pt-8 pb-5 font-medium text-2xl">Ola, {{ auth()->user()->name }}</h2>
 
-                            <x-dropdown-link class="px-10 py-2.5" :href="route('profile')" wire:navigate>
-                                {{ __('Profile') }}
+                            <x-dropdown-link class="px-10 py-2.5" :href="route('orders.index')" wire:navigate>
+                                Pedidos
                             </x-dropdown-link>
 
                             <button wire:click="logout" class="w-full text-left">

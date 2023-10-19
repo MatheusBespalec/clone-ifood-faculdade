@@ -15,4 +15,14 @@ class OrderController extends Controller
             'deliveryAddress' => auth()->user()->addresses()->whereActive(true)->first()
         ]);
     }
+
+    public function store(Request $request)
+    {
+        return redirect()->route("home");
+    }
+
+    public function index()
+    {
+        return view("orders.index");
+    }
 }
