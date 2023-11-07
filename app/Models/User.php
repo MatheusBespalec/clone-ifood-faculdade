@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return User::whereEmail($email)->first();
     }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
 }

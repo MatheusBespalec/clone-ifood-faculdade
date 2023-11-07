@@ -15,6 +15,7 @@
         "laravel/vonage-notification-channel": "^3.2",
         "livewire/livewire": "^3.0",
         "livewire/volt": "^1.0",
+        "masmerise/livewire-toaster": "^2.0",
         "vonage/vonage-laravel": "^1.0"
     },
     "require-dev": {

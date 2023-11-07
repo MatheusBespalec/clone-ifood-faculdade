@@ -2,10 +2,18 @@
 
 namespace App\Enuns;
 
-enum OrderStatus: string
+enum OrderStatus: int
 {
-    case DELIVERED = "DELIVERED";
-    case CANCELED = "CANCELED";
-    case IN_PROGRESS = "IN_PROGRESS";
-    case AWAITING_PAYMENT = "AWAITING_PAYMENT";
+    case IN_PROGRESS = 1;
+    case CANCELED = 2;
+    case DELIVERED = 3;
+
+    public function label()
+    {
+        return match ($this) {
+            self::IN_PROGRESS => "EM PREPARAÇÃO",
+            self::CANCELED => "CANCELADO",
+            self::DELIVERED => "ENTREGUE",
+        };
+    }
 }

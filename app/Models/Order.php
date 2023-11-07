@@ -52,6 +52,14 @@ class Order extends Model
     {
         return $this->belongsToMany(Product::class)
             ->as("items")
-            ->withPivot("quantity", "price");
+            ->withPivot("quantity", "unit_price");
+    }
+
+    public function getTotal(): float
+    {
+        return $this->products->reduce(
+            fn (float $total, $product) => $total + ($product->items->unit_price * $product->items->quantity),
+            0
+        );
     }
 }

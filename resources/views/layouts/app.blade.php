@@ -17,6 +17,7 @@
     </head>
     <body class="font-sans antialiased">
         <div x-data="{cartOpen: false}" class="min-h-screen bg-white">
+            <x-toaster-hub />
             <livewire:layout.navigation />
             <div class="h-12"></div>
 
