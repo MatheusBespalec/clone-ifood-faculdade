@@ -37,6 +37,8 @@ Route::name("orders.")->prefix("pedido") ->group(function () {
 Route::name("auth.")->group(function () {
     Route::get("/auth/google", [AuthController::class, "handleGoogleProvider"])->name("google");
     Route::get("/auth/google-redirect", [AuthController::class, "redirectToGoogleProvider"])->name("google-redirect");
+    Route::get("/auth/facebook", [AuthController::class, "handleFacebookProvider"])->name("facebook");
+    Route::get("/auth/facebook-redirect", [AuthController::class, "redirectToFacebookProvider"])->name("facebook-redirect");
 });
 
 

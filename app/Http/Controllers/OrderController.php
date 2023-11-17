@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Session\SessionManager;
 use Illuminate\Support\Facades\DB;
 use Masmerise\Toaster\Toaster;
+use Twilio\Rest\Client;
 
 class OrderController extends Controller
 {
@@ -58,6 +59,15 @@ class OrderController extends Controller
 
             $sessionManager->forget(Cart::DEFAULT_INSTANCE);
             Toaster::success("Seu pedido foi criado e já esta em preparação");
+            $client = new Client(config("services.twilio.account_id"), config("services.twilio.token"));
+            $client->messages->create(
+                '+5511917177611',
+                [
+                    'from' => config("services.twilio.phone"),
+                    'body' => "Seu pedido foi criado e já esta em preparação"
+                ]
+            );
+
         });
         return redirect()->route("home");
     }

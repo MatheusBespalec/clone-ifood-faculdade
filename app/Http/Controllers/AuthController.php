@@ -11,6 +11,7 @@ class AuthController extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
+
     public function handleGoogleProvider()
     {
         $googleUser = Socialite::driver('google')->user();
@@ -20,6 +21,25 @@ class AuthController extends Controller
             'name' => $googleUser->name,
             'email' => $googleUser->email,
             'google_id' => $googleUser->id,
+        ]);
+        auth()->login($user);
+        return redirect()->route("home");
+    }
+
+    public function redirectToFacebookProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleFacebookProvider()
+    {
+        $facebookUser = Socialite::driver('facebook')->user();
+        $user = User::updateOrCreate([
+            'facebook_id' => $facebookUser->getId(),
+        ], [
+            'name' => $facebookUser->getName(),
+            'email' => $facebookUser->getEmail(),
+            'facebook_id' => $facebookUser->getId(),
         ]);
         auth()->login($user);
         return redirect()->route("home");

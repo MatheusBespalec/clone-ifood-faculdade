@@ -113,6 +113,12 @@ new #[Layout('layouts.guest')] class extends Component {
                 Fazer Login com o google
             </a>
         </div>
+        <div class="mb-8">
+            <a href="{{ route('auth.facebook-redirect') }}"
+               class="relative text-center block py-4 text-white font-semibold px-3 border rounded bg-blue-600">
+                Facebook
+            </a>
+        </div>
         <div>
             <div class="flex flex-row gap-6 justify-between items-center text-gray-400">
                 <button @click="$wire.loginStep = 'phone'"

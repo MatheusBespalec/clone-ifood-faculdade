@@ -16,7 +16,8 @@
         "livewire/livewire": "^3.0",
         "livewire/volt": "^1.0",
         "masmerise/livewire-toaster": "^2.0",
-        "vonage/vonage-laravel": "^1.0"
+        "vonage/vonage-laravel": "^1.0",
+        "twilio/sdk": "^5.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",
